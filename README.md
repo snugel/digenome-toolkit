@@ -1,7 +1,7 @@
-Digestome toolkit
+Digenome toolkit
 ==
 
-We use Cas9 nuclease-digested whole genome (digestome) sequencing (Digestome-Seq) to profile genome-wide Cas9 off-target effects in cells. We can identify off-target mutations induced by programmable nucleases in a bulk population of cells by sequencing nuclease-digested genomes (digestomes). It should be possible to cleave off-target DNA sequences efficiently at high RGEN concentration in vitro, producing many DNA fragments with identical 5’ ends. These RGEN-cleaved DNA fragments would produce sequence reads that are vertically aligned at nuclease cleavage sites. In contrast, all other sequence reads would be aligned in a staggered manner. A computer program can be developed to search for sequence reads with straight alignment that correspond to off-target sites.
+We use Cas9 nuclease-digested whole genome (digenome) sequencing (Digenome-Seq) to profile genome-wide Cas9 off-target effects in cells. We can identify off-target mutations induced by programmable nucleases in a bulk population of cells by sequencing nuclease-digested genomes (digenomes). It should be possible to cleave off-target DNA sequences efficiently at high RGEN concentration in vitro, producing many DNA fragments with identical 5’ ends. These RGEN-cleaved DNA fragments would produce sequence reads that are vertically aligned at nuclease cleavage sites. In contrast, all other sequence reads would be aligned in a staggered manner. A computer program can be developed to search for sequence reads with straight alignment that correspond to off-target sites.
 
 Instructions
 --
