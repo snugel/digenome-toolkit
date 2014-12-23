@@ -1,11 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
-#define type "WT"
-//#define type "RGEN"
 
 #include <stdio.h>
 #include <string.h>
 
 #include "api/BamReader.h"
+
+#define type "WT"
+//#define type "RGEN"
 
 using namespace std;
 using namespace BamTools;
