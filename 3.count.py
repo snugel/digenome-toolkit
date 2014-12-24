@@ -7,8 +7,8 @@ for type in types:
     for cn in chrs:
         for fn in fns:
             print ('Processing chr' + cn + '_' + fn + '.txt...')
-            f = open('chr' + cn + '_' + fn + '.txt')
-            fo = open('chr' + cn + '_' + fn + '_freq.txt', 'w')
+            f = open(type + '_chr' + cn + '_' + fn + '.txt')
+            fo = open(type + '_chr' + cn + '_' + fn + '_freq.txt', 'w')
             prev = ""
             cnt = 0
             for line in f:
