@@ -18,7 +18,7 @@ def process_chunk(linechunk):
             if not leftflag or (s != 4 and s != 5):
                 for pos_diff in range(n):
                     if (s != 1 and s != 4 and s != 5):
-                        if cur_pos in depth_dic:
+                        if (cur_pos-pos_back) in depth_dic:
                             depth_dic[cur_pos-pos_back] += 1
                         else:
                             depth_dic[cur_pos-pos_back] = 1
