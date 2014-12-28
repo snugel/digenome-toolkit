@@ -31,6 +31,8 @@ if True:
     f = pysam.Samfile(argv[2], "rb")
     depth_dic = {}
     for cnt, ar in enumerate(f):
+        if ar.tid == -1:
+            continue
         chrom = f.getrname(ar.tid)
         if prev_chrom != chrom:
             if prev_chrom != "":
