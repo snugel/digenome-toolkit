@@ -10,7 +10,7 @@ Instructions
 
    In order to change prefix (type of analysis, namely "WT" or "RGEN"), change string in the header of cpp file. Also input bam file should be pre-sorted.
 
-2. Because the input bam file is already pre-sorted one, the reverse index should only be sorted. Running '2.sort.py' will do this.
+2. Because the input bam file is already pre-sorted one, the reverse index should only be sorted. Running '2.sort.py *reverse.txt' will do this.
 
 3. Running '3.count.py' and '4.cut_threshold.py' to count the number of each positions, and cut them with some threshold values.
 
