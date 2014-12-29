@@ -1,7 +1,7 @@
 from glob import glob
 
 chr_tails = list(map(str, range(1, 23))) + ["X"]
-directions = "forward", "reverse"
+directions = "forward", "reverse_sorted"
 types = "WT", "RGEN"
 fr = 5
 
