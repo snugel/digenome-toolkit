@@ -2,6 +2,7 @@ types = "WT", "RGEN"
 
 count_cutoff = 10
 ratio_cutoff = 24.99
+fr = 5
 
 chromosomes = ("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","X")
 directions = "forward", "reverse_sorted"
