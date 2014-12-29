@@ -4,7 +4,7 @@ count_cutoff = 10
 ratio_cutoff = 24.99
 
 chromosomes = ("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","X")
-directions = "forward", "reverse"
+directions = "forward", "reverse_sorted"
 
 for type in types:
     filenames = (type+"_%s.txt", type+"_chr%s_ana_%s_from_"+str(fr)+"_depth.txt", type+"_chr%s_ana_%s_"+str(fr)+"_%d_%.1f%%.txt")
