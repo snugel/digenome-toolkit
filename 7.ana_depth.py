@@ -2,7 +2,7 @@ types = "WT", "RGEN"
 depth_cutoff = 0.0
 fr = 5
 
-directions = "forward", "reverse"
+directions = "forward", "reverse_sorted"
 chromosomes = ("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","X")
 
 for type in types:
