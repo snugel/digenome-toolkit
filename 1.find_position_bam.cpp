@@ -2,14 +2,18 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "api/BamReader.h"
 
-#define type "WT"
-//#define type "RGEN"
-
 using namespace std;
 using namespace BamTools;
+
+void usage() {
+	cout << "Digenome Toolkit - 1.find_position_bam" << endl << endl
+	     << "Usage: 1.find_position_bam [-p prefix] BAM_file" << endl << endl;
+	exit(0);
+}
 
 int main(int argc, char** argv) {
     FILE *fsp = 0, *fep = 0;
@@ -32,10 +36,31 @@ int main(int argc, char** argv) {
 	bool direction; // 0
 	bool leftflag;
 
+    const char *prefix = "";
+
 	int cnt = 0;
     BamReader reader;
 
-	reader.Open(argv[1]);
+	if (argc < 2 || argc > 4) usage();
+
+	for (i=1; i<argc; i++) {
+		if ((strcmp(argv[i], "-p") == 0) && (i != argc-1)) {
+			prefix = argv[++i];
+		} else {
+			if (!reader.IsOpen()) {
+				try {
+					reader.Open(argv[i]);
+				} catch (exception& e) {
+					cout << e.what();
+					throw;
+				}
+			} else {
+				usage();
+			}
+		}
+	}
+	if (!reader.IsOpen()) usage();
+
     const SamHeader header = reader.GetHeader();
     const RefVector references = reader.GetReferenceData();
     
@@ -54,14 +79,18 @@ int main(int argc, char** argv) {
 			if (fsp) fclose(fsp);
 			if (fep) fclose(fep);
 			fn[0] = 0;
-			strcat(fn, type);
-			strcat(fn, "_");
+			if (prefix != "") {
+				strcat(fn, prefix);
+				strcat(fn, "_");
+			}
 			strcat(fn, chrom);
 			strcat(fn, "_forward.txt");
 			fsp = fopen(fn, "w");
 			fn[0] = 0;
-			strcat(fn, type);
-			strcat(fn, "_");
+			if (prefix != "") {
+				strcat(fn, prefix);
+				strcat(fn, "_");
+			}
 			strcat(fn, chrom);
 			strcat(fn, "_reverse.txt");
 			fep = fopen(fn, "w");
