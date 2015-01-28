@@ -92,14 +92,14 @@ def main():
         print('Running 6.get_depth.py...')
         for chrom in chrom_list:
             os.system('pypy {0}6.get_depth.py {1} -d forward {2}{3}_forward_freq_from_5.txt {2}{3}_depth.txt'.format(digenome_home, opt_prefix, pre_prefix, chrom))
-            os.system('pypy {0}6.get_depth.py {1} -d forward {2}{3}_reverse_sorted_freq_from_5.txt {2}{3}_depth.txt'.format(digenome_home, opt_prefix, pre_prefix, chrom))
+            os.system('pypy {0}6.get_depth.py {1} -d reverse {2}{3}_reverse_sorted_freq_from_5.txt {2}{3}_depth.txt'.format(digenome_home, opt_prefix, pre_prefix, chrom))
         print('')
         step += 1
     if step == 7:
         print('Running 7.ana_depth.py...')
         for chrom in chrom_list:
             os.system('pypy {0}7.ana_depth.py {1} -d forward {2}{3}_forward_freq_from_5.txt'.format(digenome_home, opt_prefix, pre_prefix, chrom))
-            os.system('pypy {0}7.ana_depth.py {1} -d forward {2}{3}_reverse_sorted_freq_from_5.txt'.format(digenome_home, opt_prefix, pre_prefix, chrom))
+            os.system('pypy {0}7.ana_depth.py {1} -d reverse {2}{3}_reverse_sorted_freq_from_5.txt'.format(digenome_home, opt_prefix, pre_prefix, chrom))
         print('')
         step += 1
     if step == 8:
