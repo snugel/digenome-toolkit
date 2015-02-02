@@ -1,11 +1,21 @@
-from sys import argv # forward 1, reverse 1, forward 2, reverse 2, ...
+from sys import argv # [-r ratio_cutoff], [-g differnce], forward 1, reverse 1, forward 2, reverse 2, ...
 
-count_cutoff = 10
-ratio_cutoff = 24.99
 fr = 5
+count_cutoff = 10
 
-fns = zip(argv[1::2], argv[2::2])
-print fns
+ratio_cutoff = 20.0
+difference = 1
+
+fns = []
+for i in range(1, len(argv)):
+    if i != len(argv)-1 and argv[i] == "-r":
+        ratio_cutoff = float(argv[i+1])
+    elif i != len(argv)-1 and argv[i] == "-g":
+        difference = int(argv[i+1])
+    elif i != 0 and argv[i-1] != "-r" and argv[i-1] != "-g":
+        fns.append(argv[i])
+
+fns = zip(fns[::2], fns[1::2])
 
 # Read forward information
 for ffn, frn in fns:
@@ -26,16 +36,16 @@ for ffn, frn in fns:
 
     print ("Comparing it with reverse information from {} and writing to file...".format(frn))
     with open(frn) as f,\
-         open(ffnhead + "_%d_%.1f.txt"%(count_cutoff, ratio_cutoff), "w") as ffo,\
-         open(frnhead + "_%d_%.1f.txt"%(count_cutoff, ratio_cutoff), "w") as fro:
+         open(ffnhead + "_%d_%.1f%%_diff_%d.txt"%(count_cutoff, ratio_cutoff, difference), "w") as ffo,\
+         open(frnhead + "_%d_%.1f%%_diff_%d.txt"%(count_cutoff, ratio_cutoff, difference), "w") as fro:
         for line in f:
             entries = line.split('\t')
             pos = int(entries[0])
             count = int(entries[1])
             ratio = float(entries[3])
-            if count >= count_cutoff and ratio > ratio_cutoff:
+            if count >= count_cutoff and not ratio < ratio_cutoff:
                 try:
-                    ffo.write(forward_dic[pos+1][2])
+                    ffo.write(forward_dic[pos+difference][2])
                     fro.write(line)                    
                 except KeyError:
                     pass
