@@ -6,7 +6,7 @@ We use Cas9 nuclease-digested whole genome (digenome) sequencing (Digenome-Seq) 
 Instructions
 --
 
-1. To find start/end positions of aligned sequences, compile 1.find_position_bam.cpp into binary with g++ by running `build_find_position_bam.sh`. The script will automatically download and compile bamtools library (https://github.com/pezmaster31/bamtools). In order to build bamtools library properly, cmake, g++, and git should be pre-installed.
+1. In order to find start/end positions of aligned sequences, `1.find_position_bam.cpp` needs to be compiled into binary. By running `build_find_position_bam.sh`, it will firstly automatically download and compile bamtools library (https://github.com/pezmaster31/bamtools) and secondly compile `1.find_position_bam.cpp` into binary. To build bamtools library properly, cmake, g++, and git should be pre-installed.
 
 2. Set an environment variable 'DIGENOME_HOME', to the directory which contains python files and executables.
 
