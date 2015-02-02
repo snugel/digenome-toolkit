@@ -1,5 +1,5 @@
 from sys import argv # [-p prefix], [-d direction], 1_freq, 1_depth, 2_freq, 2_depth, ...
-
+from os.path import isfile
 prefix = ""
 direction = ""
 
@@ -14,11 +14,10 @@ for i in range(1, len(argv)):
 
 if direction != "":
     fns = zip(fns[::2], fns[1::2])
-
     if prefix == "":
-        fo = open("%s.txt"%direction, "w")
+        fo = open("%s.txt"%direction, "wa")
     else:
-        fo = open("%s_%s.txt"%(prefix, direction), "w")
+        fo = open("%s_%s.txt"%(prefix, direction), "wa")
 
     for ffn, fdn in fns:
         print ("Processing {} and {}...".format(ffn, fdn))
@@ -33,7 +32,7 @@ if direction != "":
                         fo.write(fd_line)
                         break
                 except:
-                    print (chr_tail, direction, type, ff_line, fd_line)
+                    print (ff_line, fd_line)
                     break
         ff.close()
     fo.write("\n")

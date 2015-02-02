@@ -90,6 +90,11 @@ def main():
         step += 1
     if step == 6:
         print('Running 6.get_depth.py...')
+        try:
+            os.remove('{0}forward.txt'.format(pre_prefix))
+            os.remove('{0}reverse.txt'.format(pre_prefix))
+        except:
+            pass
         for chrom in chrom_list:
             os.system('pypy {0}6.get_depth.py {1} -d forward {2}{3}_forward_freq_from_5.txt {2}{3}_depth.txt'.format(digenome_home, opt_prefix, pre_prefix, chrom))
             os.system('pypy {0}6.get_depth.py {1} -d reverse {2}{3}_reverse_sorted_freq_from_5.txt {2}{3}_depth.txt'.format(digenome_home, opt_prefix, pre_prefix, chrom))
