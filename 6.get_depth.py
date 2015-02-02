@@ -15,12 +15,12 @@ for i in range(1, len(argv)):
 if direction != "":
     fns = zip(fns[::2], fns[1::2])
     if prefix == "":
-        fo = open("%s.txt"%direction, "wa")
+        fo = open("%s.txt"%direction, "a")
     else:
-        fo = open("%s_%s.txt"%(prefix, direction), "wa")
+        fo = open("%s_%s.txt"%(prefix, direction), "a")
 
     for ffn, fdn in fns:
-        print ("Processing {} and {}...".format(ffn, fdn))
+        print ("Processing {0} and {1}...".format(ffn, fdn))
         ff = open(ffn)
         fd = open(fdn)
         for ff_line in ff:
