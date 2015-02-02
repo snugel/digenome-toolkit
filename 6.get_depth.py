@@ -9,7 +9,7 @@ for i in range(1, len(argv)):
         prefix = argv[i+1]
     elif i != len(argv)-1 and argv[i] == "-d":
         direction = argv[i+1]
-    elif i != 1 and argv[i-1] != "-p" and argv[i-1] != "-d":
+    elif i != 0 and argv[i-1] != "-p" and argv[i-1] != "-d":
         fns.append(argv[i])
 
 if direction != "":
@@ -19,6 +19,7 @@ if direction != "":
     else:
         fo = open("%s_%s.txt"%(prefix, direction), "a")
 
+    firstline = True
     for ffn, fdn in fns:
         print ("Processing {0} and {1}...".format(ffn, fdn))
         ff = open(ffn)
@@ -29,7 +30,11 @@ if direction != "":
                 fd_line = fd.readline()
                 try:
                     if fd_line.split('\t')[0].split(':')[1] == pos:
-                        fo.write(fd_line)
+                        if firstline:
+                            firstline = False
+                        else:
+                            fo.write('\n')
+                        fo.write(fd_line.strip())
                         break
                 except:
                     print (ff_line, fd_line)

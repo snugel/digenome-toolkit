@@ -5,6 +5,7 @@ ratio_cutoff = 24.99
 fr = 5
 
 fns = zip(argv[1::2], argv[2::2])
+print fns
 
 # Read forward information
 for ffn, frn in fns:

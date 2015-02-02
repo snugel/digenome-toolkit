@@ -12,31 +12,38 @@ for i in range(1, len(argv)):
         prefix = argv[i+1] + "_"
     elif i != len(argv)-1 and argv[i] == "-d":
         direction = argv[i+1]
-    elif i != 1 and argv[i-1] != "-p" and argv[i-1] != "-d":
+    elif i != 0 and argv[i-1] != "-p" and argv[i-1] != "-d":
         fns.append(argv[i])
 
 if direction != "":
     depth_dic = {}
     fn_depth = prefix+direction+".txt"
-
-    print ("Reading depth information files...")
-
+    print ("Reading depth information file...")
     # Read depth information
+    cnt = 0
     with open(fn_depth) as f:
         for line in f:
             entries = line.split('\t')
             if len(entries) < 2:
                 continue
-            chromosome, position = entries[0].split(':')[:2] # For safety
+            chromosome, position = entries[0].split(':')[:2] # Slice first two for safety
             depth = int(entries[1])
             if depth != 0:
-                if not chromosome + direction in depth_dic:
-                    depth_dic[chromosome + direction] = {}
-                depth_dic[chromosome+direction][int(position)] = depth
-
+                if not chromosome in depth_dic:
+                    depth_dic[chromosome] = {}
+                depth_dic[chromosome][int(position)] = depth
     # Read count information and print results
     for fn in fns:
-        print ("Processing {}...".format(fn))
+        print ("Processing {0}...".format(fn))
+        # Assume that the file name contains chromosome name
+        chromosome = ""
+        for chrom in depth_dic:
+            if chrom in fn:
+                 chromosome = chrom
+                 break
+        if chromosome == "":
+            print("Cannot determine chromosome name for file {0}!".format(fn))
+            continue
         fnhead = ".".join(fn.split(".")[:-1])
         with open(fn) as f, open(fnhead + "_ana.txt", "w") as fo:
             for line in f:
@@ -44,7 +51,7 @@ if direction != "":
                 position = entries[0]
                 count = entries[1].strip()
                 try:
-                    depth = depth_dic["chr"+chromosome+direction][int(position)]
+                    depth = depth_dic[chromosome][int(position)]
                     depth_percent = int(count)*100.0/depth
                     if depth_percent >= depth_cutoff:
                         fo.write("%s\t%s\t%d\t%.1f\n"%(position, count, depth, depth_percent))
