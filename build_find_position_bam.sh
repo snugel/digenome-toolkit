@@ -8,7 +8,7 @@ if [ ! -d "bamtools" ]; then
   else
     wget https://github.com/pezmaster31/bamtools/archive/master.zip
     unzip master.zip 2>&1 > /dev/null
-    rm master.zip 2>&1 > /dev/null
+    rm master.zip;mv bamtools-master bamtools
   fi
 fi
 
