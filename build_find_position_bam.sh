@@ -1,6 +1,16 @@
 #!/bin/bash
 if [ ! -d "bamtools" ]; then
-  git clone https://github.com/pezmaster31/bamtools
+  # http://stackoverflow.com/questions/7292584/how-to-check-if-git-is-installed-from-bashrc
+  git --version 2>&1 >/dev/null
+  GIT_IS_AVAILABLE=$?
+  # ...
+  if [ $GIT_IS_AVAILABLE -eq 0 ]; then
+    git clone https://github.com/pezmaster31/bamtools
+  else
+    curl -o bamtools.zip https://github.com/pezmaster31/bamtools/archive/master.zip
+    unzip bamtools.zip 2>&1 > /dev/null
+    rm bamtools.zip 2>&1 > /dev/null
+  fi
 fi
 
 if [ ! -d "bamtools_build" ]; then
