@@ -36,7 +36,7 @@ function install_digenome {
   echo "Building 1.find_position_bam.cpp..."
   $dir/build_find_position_bam.sh
   if [ ! -d "$1/digenome-toolkit" ]; then
-    mkdir "$1/digenome-toolkit"
+    mkdir -p "$1/digenome-toolkit"
   fi
   if [ "$1/digenome-toolkit" != "$dir" ]; then
     echo "Copying all required files..."
