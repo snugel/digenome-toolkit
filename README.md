@@ -14,4 +14,4 @@ Instructions
 
 digenome-run [-r cutoff_ratio=20.0] [-g difference=1] BAM_PATH [step=1]
 
-It will automatically execute all required processes. It needs 'pysam' python package to run properly.
+It will automatically execute all required processes. It needs 'pysam' python package and 'pypy' to run properly.
