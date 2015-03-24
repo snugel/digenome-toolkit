@@ -2,7 +2,6 @@ from sys import argv # [-r ratio_cutoff], [-g differnce], forward 1, reverse 1, 
 
 fr = 5
 count_cutoff = 10
-
 ratio_cutoff = 20.0
 difference = 1
 
@@ -12,7 +11,9 @@ for i in range(1, len(argv)):
         ratio_cutoff = float(argv[i+1])
     elif i != len(argv)-1 and argv[i] == "-g":
         difference = int(argv[i+1])
-    elif i != 0 and argv[i-1] != "-r" and argv[i-1] != "-g":
+    elif i != len(argv)-1 and argv[i] == "-c":
+        count_cutoff = int(argv[i+1])
+    elif i != 0 and argv[i-1] != "-r" and argv[i-1] != "-g" and argv[i-1] != "-c":
         fns.append(argv[i])
 
 fns = zip(fns[::2], fns[1::2])

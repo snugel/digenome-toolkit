@@ -7,7 +7,7 @@ import pysam
 def usage():
     print 'digenome-toolkit v1.2, written by Jeongbin Park'
     print 
-    print 'USAGE: digenome-run [-r cutoff_ratio=20.0] [-g difference=1] [-p prefix] bam-file-path [step=1]'
+    print 'USAGE: digenome-run [-c count_cutoff=10] [-r cutoff_ratio=20.0] [-g difference=1] [-p prefix] bam-file-path [step=1]'
 
 def get_chrom_list(fn):
     chrom_list = []
@@ -23,6 +23,7 @@ def get_chrom_list(fn):
 def main():
     ratio_cutoff = 20.0
     difference = 1
+    count_cutoff = 10
 
     opts = []
     prefix = ""
@@ -33,7 +34,9 @@ def main():
             difference = int(argv[i+1])
         elif i != len(argv)-1 and argv[i] == "-r":
             ratio_cutoff = float(argv[i+1])
-        elif argv[i-1] != "-p" and argv[i-1] != "-g" and argv[i-1] != "-r":
+        elif i != len(argv)-1 and argv[i] == "-c":
+            count_cutoff = int(argv[i+1])
+        elif argv[i-1] != "-p" and argv[i-1] != "-g" and argv[i-1] != "-r" and argv[i-1] != "-c":
             opts.append(argv[i])
 
     try:
@@ -119,5 +122,5 @@ def main():
     if step == 8:
         print('Running 8.analysis.py...')
         for chrom in chrom_list:
-            os.system('pypy {0}8.analysis.py -r {1} -g {2} {3}{4}_forward_freq_from_5_ana.txt {3}{4}_reverse_sorted_freq_from_5_ana.txt'.format(digenome_home, ratio_cutoff, difference, pre_prefix, chrom))
+            os.system('pypy {0}8.analysis.py -c {1} -r {2} -g {3} {4}{5}_forward_freq_from_5_ana.txt {4}{5}_reverse_sorted_freq_from_5_ana.txt'.format(digenome_home, count_cutoff, ratio_cutoff, difference, pre_prefix, chrom))
 main()
