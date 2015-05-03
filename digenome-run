@@ -42,7 +42,7 @@ def main():
             range_sum = int(argv[i+1])
         elif argv[i] == "-s":
             sum_cutoffs = True
-        elif argv[i-1] != "-p" and argv[i-1] != "-g" and argv[i-1] != "-r" and argv[i-1] != "-c":
+        elif argv[i-1] != "-p" and argv[i-1] != "-g" and argv[i-1] != "-r" and argv[i-1] != "-c" and argv[i-1] != "-u":
             opts.append(argv[i])
 
     try:
