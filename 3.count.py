@@ -21,7 +21,7 @@ for fn in fns:
         if line != prev:
             if cnt != 0:
                 pos = int(prev)
-                for i in range(max(0, pos-range_sum), pos+range_sum+1):
+                for i in range(max(1, pos-range_sum), pos+range_sum+1):
                     bufs[i] += cnt
             prev = line
             cnt = 0
@@ -29,7 +29,7 @@ for fn in fns:
     f.close()
 
     pos = int(prev)
-    for i in range(max(0, pos-range_sum), pos+range_sum+1):
+    for i in range(max(1, pos-range_sum), pos+range_sum+1):
         bufs[i] += cnt
 
     l = list(bufs.items())
