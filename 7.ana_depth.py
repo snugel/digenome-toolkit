@@ -37,10 +37,11 @@ if direction != "":
         print ("Processing {0}...".format(fn))
         # Assume that the file name contains chromosome name
         chromosome = ""
+        matchlen = 0
         for chrom in depth_dic:
-            if chrom in fn:
+            if chrom in fn and matchlen < len(chrom):
                  chromosome = chrom
-                 break
+                 matchlen = len(chrom)
         if chromosome == "":
             print("Cannot determine chromosome name for file {0}!".format(fn))
             continue
