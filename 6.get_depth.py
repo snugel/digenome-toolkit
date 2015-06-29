@@ -29,7 +29,11 @@ if direction != "":
             while True:
                 fd_line = fd.readline()
                 try:
-                    if fd_line.split('\t')[0].split(':')[1] == pos:
+                    fd_pos = fd_line.split('\t')[0].split(':')[1]
+                    while fd_pos > pos:
+                        ff_line = ff.readline()
+                        pos = ff_line.split('\t')[0]
+                    if fd_pos == pos:
                         if firstline:
                             firstline = False
                         else:
