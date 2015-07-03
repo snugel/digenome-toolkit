@@ -30,7 +30,7 @@ if direction != "":
                 fd_line = fd.readline()
                 try:
                     fd_pos = fd_line.split('\t')[0].split(':')[1]
-                    while fd_pos > pos:
+                    while int(fd_pos) > int(pos):
                         ff_line = ff.readline()
                         pos = ff_line.split('\t')[0]
                     if fd_pos == pos:
