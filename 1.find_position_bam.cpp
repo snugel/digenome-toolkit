@@ -70,7 +70,12 @@ int main(int argc, char** argv) {
         if ((flag & 256) || (flag & 4) || (flag & 512) || (flag & 1024)) continue;
 
         direction = ( (flag & 16) == 16);
-        strcpy(chrom, references[al.RefID].RefName.c_str());
+        if (al.RefID < references.size()) { 
+            strcpy(chrom, references[al.RefID].RefName.c_str());
+        } else {
+            cout << "Warning: No reference found in header! Skipping..." << endl;
+            continue;
+        }
         pos = al.Position+1;
         quality = al.MapQuality;
         if (quality == 0) continue;
