@@ -1,3 +1,6 @@
+This tool is depricated and no longer maintained. Please use Digenome-toolkit2 (https://github.com/ibscge/digenome-toolkit2) instead.
+==
+
 Digenome toolkit
 ==
 
